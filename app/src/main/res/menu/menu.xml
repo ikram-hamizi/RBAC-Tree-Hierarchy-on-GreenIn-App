@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ah.jocelyne.greenin.MainActivity">
+
+    <item
+        android:id="@+id/donate"
+        android:orderInCategory="1"
+        android:title="@string/title_activity_donate"
+        android:icon="@drawable/ic_card_giftcard_white_24dp"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/about_us"
+        android:orderInCategory="2"
+        android:title="@string/title_activity_about_us"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/subscribe"
+        android:orderInCategory="3"
+        android:title="Subscribe"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/unsubscribe"
+        android:orderInCategory="4"
+        android:title="Unsubscribe"
+        app:showAsAction="never" />
+
+</menu>

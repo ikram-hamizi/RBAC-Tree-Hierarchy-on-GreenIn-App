@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="509dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:background="#e7e1e1"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="183dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="145dp"
+                android:layout_height="120dp"
+                android:layout_margin="20dp"
+                android:background="@android:color/holo_orange_dark"
+                android:fontFamily="casual"
+                android:text="Solutions"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="145dp"
+                android:layout_height="120dp"
+                android:layout_margin="20dp"
+                android:background="@android:color/holo_blue_dark"
+                android:fontFamily="casual"
+                android:text="Newsfeed"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="145dp"
+                android:layout_height="120dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="20dp"
+                android:layout_marginBottom="189dp"
+                android:background="@android:color/holo_purple"
+                android:fontFamily="casual"
+                android:text="Markets"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button15"
+                android:layout_width="145dp"
+                android:layout_height="120dp"
+                android:layout_margin="20dp"
+                android:background="@android:color/holo_green_light"
+                android:fontFamily="casual"
+                android:text="Events"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button14"
+                android:layout_width="145dp"
+                android:layout_height="120dp"
+                android:layout_margin="20dp"
+                android:background="@android:color/holo_red_dark"
+                android:fontFamily="casual"
+                android:text="DIY"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="145dp"
+                android:layout_height="120dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="20dp"
+                android:layout_marginBottom="189dp"
+                android:background="@android:color/holo_orange_light"
+                android:fontFamily="casual"
+                android:text="FAQ"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

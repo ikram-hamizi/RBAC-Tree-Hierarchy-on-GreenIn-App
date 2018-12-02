@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ah.jocelyne.greenin">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/greenin_logo"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/GreenInTheme">
+        <activity
+            android:name=".Welcome"
+            android:label="GreenIn">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AboutUs"
+            android:label="@string/title_activity_about_us"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".FAQ"
+            android:label="@string/title_activity_faq"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".EventsActivity"
+            android:label="@string/title_activity_events"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".EventDetail" />
+        <activity
+            android:name=".SolutionsActivity"
+            android:label="@string/title_activity_solutions"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CategoryActivity"
+            android:label=""
+            android:parentActivityName=".SolutionsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.SolutionsActivity" />
+        </activity>
+        <activity
+            android:name=".DonateActivity"
+            android:label="@string/title_activity_donate"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/OriginalTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CategoryItemDetail"
+            android:label=""
+            android:parentActivityName=".CategoryActivity"
+            android:theme="@style/OriginalTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.CategoryActivity" />
+        </activity>
+        <activity
+            android:name=".DIY_Activity"
+            android:label="@string/title_activity_diy_"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/OriginalTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.MainActivity" />
+        </activity>
+        <activity android:name=".ArticleDetail" />
+        <activity
+            android:name=".NewsfeedActivity"
+            android:label="@string/title_activity_newsfeed"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.MainActivity" />
+        </activity>
+        <activity
+            android:name=".NewsItemDetail"
+            android:theme="@style/WebTheme" />
+        <activity
+            android:name=".PostDonationActivity"
+            android:label=""
+            android:parentActivityName=".DonateActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.DonateActivity" />
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="GreenIn" />
+        <activity
+            android:name=".MarketsActivity"
+            android:label="@string/title_activity_markets"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MarketDetail"
+            android:label="@string/title_activity_market_detail"
+            android:parentActivityName=".MarketsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.MarketsActivity" />
+        </activity>
+        <activity
+            android:name=".SubscribeActivity"
+            android:label="@string/title_activity_subscribe"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/OriginalTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ContactUsActivity"
+            android:label="@string/title_activity_contact_us"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.MainActivity" />
+        </activity>
+        <activity
+            android:name=".UnsubscribeActivity"
+            android:label="@string/title_activity_unsubscribe"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/OriginalTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CategWebDetail"
+            android:label="@string/title_activity_categ_web_detail"
+            android:parentActivityName=".CategoryItemDetail"
+            android:theme="@style/WebTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.CategoryItemDetail" />
+        </activity>
+        <activity
+            android:name=".login.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".signup.SignUpActivity"
+            android:label="@string/title_activity_sign_up"
+            android:parentActivityName=".login.LoginActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ah.jocelyne.greenin.login.LoginActivity" />
+        </activity>
+    </application>
+
+</manifest>

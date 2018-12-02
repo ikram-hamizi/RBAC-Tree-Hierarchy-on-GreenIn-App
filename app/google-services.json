@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "1068294585847",
+    "firebase_url": "https://greenin-ff871.firebaseio.com",
+    "project_id": "greenin-ff871",
+    "storage_bucket": "greenin-ff871.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068294585847:android:a05b927622afe698",
+        "android_client_info": {
+          "package_name": "ah.jocelyne.greenin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1068294585847-ogjrptfu9fds5v7leking3r5ugboha6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEKztCdrrFWkrQkcg7ww2RRLBPrYcNcrc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068294585847:android:541deba31c5bee2a",
+        "android_client_info": {
+          "package_name": "com.ah.jocelyne.greenin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1068294585847-ogjrptfu9fds5v7leking3r5ugboha6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEKztCdrrFWkrQkcg7ww2RRLBPrYcNcrc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
