@@ -159,7 +159,8 @@
         </activity>
         <activity
             android:name=".login.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:noHistory="true"/>
         <activity
             android:name=".signup.SignUpActivity"
             android:label="@string/title_activity_sign_up"
@@ -168,6 +169,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ah.jocelyne.greenin.login.LoginActivity" />
         </activity>
+        <activity android:name=".profile.ProfileActivity"></activity>
     </application>
 
 </manifest>

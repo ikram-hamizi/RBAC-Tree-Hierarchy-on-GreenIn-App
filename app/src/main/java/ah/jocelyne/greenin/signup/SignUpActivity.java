@@ -3,6 +3,7 @@ package ah.jocelyne.greenin.signup;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -40,7 +41,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import ah.jocelyne.greenin.MainActivity;
 import ah.jocelyne.greenin.R;
+import ah.jocelyne.greenin.profile.SessionManager;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -48,6 +51,8 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+  SessionManager session;
 
   DatabaseReference usersRef;
 
@@ -76,7 +81,6 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
   private EditText mLastNameView;
   private AutoCompleteTextView mEmailView;
   private EditText mPasswordView;
-  private EditText mRoleView;
   private View mProgressView;
   private View mLoginFormView;
   private Spinner mRoleSpinner;
@@ -86,6 +90,8 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sign_up);
     //setupActionBar();
+
+    session = new SessionManager(getApplicationContext());
 
     // Set up the signup form.
     mFirstNameView = (EditText) findViewById(R.id.first_name);
@@ -384,27 +390,30 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
           //this method will execute twice, so round ensures we only do our logic the first time
           round++;
 
-          //check if the email address already exists in the database
-          user_exists = false;
-          for(DataSnapshot user : dataSnapshot.getChildren()) {
-            if (mEmail.equalsIgnoreCase(user.child("email").getValue(String.class))) {
-              user_exists = true; //change later
+          if (round < 2) {
+            //check if the email address already exists in the database
+            user_exists = false;
+            for(DataSnapshot user : dataSnapshot.getChildren()) {
+              if (mEmail.equalsIgnoreCase(user.child("email").getValue(String.class))) {
+                user_exists = true; //change later
+              }
             }
-          }
 
-          //add user if the email address does not already exist
-          if(user_exists == false && round < 2) {
-            //add to database
-            //usersRef.child(email2).setValue(subscribedUser);
-            RegisteredUser newUser = new RegisteredUser(mFirstName, mLastName, mEmail, mPassword, mRoleChosen);
-            usersRef.push().setValue(newUser);
+            //add user if the email address does not already exist
+            if (user_exists == false) {
+              //add to database
+              //usersRef.child(email2).setValue(subscribedUser);
+              RegisteredUser newUser = new RegisteredUser(mFirstName, mLastName, mEmail, mPassword, mRoleChosen);
+              usersRef.push().setValue(newUser);
 
-            //TODO send confirmation email
+              //TODO send confirmation email
 
-            Toast.makeText(getApplicationContext(), "You have been registered!", Toast.LENGTH_LONG).show();
-          }
-          else if(round < 2) {
-            Toast.makeText(getApplicationContext(), "This email address is already registered.", Toast.LENGTH_LONG).show();
+              Toast.makeText(getApplicationContext(), "You have been registered!", Toast.LENGTH_LONG).show();
+              startUsingApp(newUser);
+            }
+            else {
+              Toast.makeText(getApplicationContext(), "This email address is already registered.", Toast.LENGTH_LONG).show();
+            }
           }
         }
 
@@ -438,5 +447,16 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
       showProgress(false);
     }
   }
+
+  private void startUsingApp(RegisteredUser user) {
+    //save profile info
+    session.createLoginSession(user);
+
+    //go to app
+    Intent i = new Intent(SignUpActivity.this, MainActivity.class);
+    startActivity(i);
+    finish();
+  }
+
 }
 

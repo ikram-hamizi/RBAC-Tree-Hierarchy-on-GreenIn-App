@@ -11,13 +11,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import ah.jocelyne.greenin.profile.ProfileActivity;
+import ah.jocelyne.greenin.profile.SessionManager;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    SessionManager session;
+
     CardView events_but;
     CardView solutions_but;
     CardView news_but;
     CardView diy_but;
     CardView markets_but;
     CardView faq_but;
+    CardView profile_but;
+    CardView logout_but;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        session = new SessionManager(getApplicationContext());
 
         events_but = findViewById(R.id.events_but);
         events_but.setOnClickListener(this);
@@ -43,11 +53,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         faq_but = findViewById(R.id.faq_but);
         faq_but.setOnClickListener(this);
+
+        profile_but = findViewById(R.id.profile_but);
+        profile_but.setOnClickListener(this);
+
+        logout_but = findViewById(R.id.logout_but);
+        logout_but.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         Intent i = getIntent();
+        boolean logout = false;
         switch (view.getId()) {
             case R.id.events_but:
                 i = new Intent(this, EventsActivity.class);
@@ -72,8 +89,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.faq_but:
                 i = new Intent(this, FAQ.class);
                 break;
+
+            case R.id.profile_but:
+                i = new Intent(this, ProfileActivity.class);
+                break;
+
+            case R.id.logout_but:
+                logout = true;
+                session.logoutUser();
+                break;
         }
-        startActivity(i);
+
+        if (!logout) {
+            startActivity(i);
+        }
     }
 
     @Override
@@ -109,5 +138,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 }

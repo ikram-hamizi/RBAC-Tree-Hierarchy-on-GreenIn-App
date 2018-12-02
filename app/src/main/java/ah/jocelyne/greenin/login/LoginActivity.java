@@ -40,7 +40,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import ah.jocelyne.greenin.MainActivity;
 import ah.jocelyne.greenin.R;
+import ah.jocelyne.greenin.profile.SessionManager;
+import ah.jocelyne.greenin.signup.RegisteredUser;
 import ah.jocelyne.greenin.signup.SignUpActivity;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -49,6 +52,9 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+  SessionManager session;
+  RegisteredUser registeredUser;
 
   DatabaseReference usersRef;
 
@@ -82,6 +88,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
+
+    session = new SessionManager(getApplicationContext());
+
     // Set up the login form.
     mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
     populateAutoComplete();
@@ -361,22 +370,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
           //this method will execute twice, so round ensures we only do our logic the first time
           round++;
 
-          //check if the email address already exists in the database
-          user_exists = false;
-          for(DataSnapshot user : dataSnapshot.getChildren()) {
-            if (mEmail.equalsIgnoreCase(user.child("email").getValue(String.class))) {
-              if (mPassword.equals(user.child("hashedPassword").getValue(String.class))) { //change for hashing
-                user_exists = true;
+          if (round < 2) {
+            //check if the email address already exists in the database
+            user_exists = false;
+            for(DataSnapshot user : dataSnapshot.getChildren()) {
+              if (mEmail.equalsIgnoreCase(user.child("email").getValue(String.class))) {
+                if (mPassword.equals(user.child("hashedPassword").getValue(String.class))) { //TODO change for hashing
+                  user_exists = true;
+                  registeredUser = new RegisteredUser(user.child("firstName").getValue(String.class),
+                      user.child("lastName").getValue(String.class), user.child("email").getValue(String.class),
+                      user.child("hashedPassword").getValue(String.class), user.child("role").getValue(String.class));
+
+                }
               }
             }
-          }
 
-          //login is user is verified
-          if(user_exists  && round < 2) {
-            Toast.makeText(getApplicationContext(), "Logging in!", Toast.LENGTH_LONG).show();
-          }
-          else if(round < 2) {
-            Toast.makeText(getApplicationContext(), "Invalid email/password.", Toast.LENGTH_LONG).show();
+            //login if user is verified
+            if (user_exists) {
+              Toast.makeText(getApplicationContext(), "Logging in!", Toast.LENGTH_LONG).show();
+              startUsingApp(registeredUser);
+            }
+            else {
+              Toast.makeText(getApplicationContext(), "Invalid email/password.", Toast.LENGTH_LONG).show();
+            }
           }
         }
 
@@ -410,5 +426,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
       showProgress(false);
     }
   }
+
+  private void startUsingApp(RegisteredUser user) {
+    //save profile info
+    session.createLoginSession(user);
+
+    //go to app
+    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+    startActivity(i);
+    finish();
+  }
+
+  @Override
+  public void onBackPressed() {
+    Intent a = new Intent(Intent.ACTION_MAIN);
+    a.addCategory(Intent.CATEGORY_HOME);
+    a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(a);
+  }
+
 }
 
