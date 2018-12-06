@@ -2,21 +2,20 @@ package ah.jocelyne.greenin.user_hierarchy;
 
 import ah.jocelyne.greenin.signup.RegisteredUser;
 
-public class Journalist extends RegisteredUser implements Role{
+public class ProjectManager extends RegisteredUser implements Role {
 
-    public Journalist (String firstName, String lastName, String email, String hashedPassword, String salt, String role) {
+    public ProjectManager(String firstName, String lastName, String email, String hashedPassword, String salt, String role) {
         super(firstName, lastName, email, hashedPassword, salt, role);
     }
 
-    public void addArticle(){}
-    public void editArticle(){}
-    public void deleteArticle(){}
+    public void addEvent() {    }
+    public void deleteEvent() {    }
+
 
     public void invokeMyFunctions()
     {
-        addArticle();
-        editArticle();
-        deleteArticle();
+        addEvent();
+        deleteEvent();
     }
 
     public invokeMyChildrenFunctions() {

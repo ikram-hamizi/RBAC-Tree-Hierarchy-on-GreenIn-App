@@ -361,7 +361,8 @@ public class SignUpActivity extends AppCompatActivity implements LoaderCallbacks
         private final String mPassword;
         private final String mRoleChosen;
 
-        UserLoginTask(String firstName, String lastName, String email, String password, String roleChosen) {
+        UserLoginTask(String firstName, String lastName, String email, String password, String roleChosen)
+        {
             mFirstName = firstName;
             mLastName = lastName;
             mEmail = email;

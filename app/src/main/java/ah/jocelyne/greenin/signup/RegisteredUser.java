@@ -9,12 +9,16 @@ public class RegisteredUser {
     String salt;
     String role;
 
+    Role ROLE; //Try
+
     public RegisteredUser(String firstName, String lastName, String email, String hashedPassword, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.hashedPassword = hashedPassword;
         this.role = role;
+
+        ROLE = new Role (role); //Try
     }
 
     public RegisteredUser(String firstName, String lastName, String email, String hashedPassword, String salt, String role) {
